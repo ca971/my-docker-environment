@@ -1,0 +1,32 @@
+dnsmasq:
+    container_name: dnsmasq
+    image: andyshinn/dnsmasq:latest
+    ports:
+        - "53:53/tcp"
+        - "53:53/udp"
+    cap_add:
+        - NET_ADMIN
+    environment:
+        SERVICE_NAME: dnsmasq
+    command: --address=/.${DOCKER_DNS_DOMAIN}/${DOCKER_MACHINE_IP}
+
+nginx-proxy:
+    container_name: nginx-proxy
+    image: jwilder/nginx-proxy:latest
+    ports:
+        - "80:80"
+        - "443:443"
+    volumes:
+        - /var/run/docker.sock:/tmp/docker.sock:ro
+    environment:
+        SERVICE_NAME: nginx-proxy
+
+mailcatcher:
+    container_name: mailcatcher
+    image: schickling/mailcatcher:latest
+    ports:
+        - "1025:1025"
+    environment:
+        SERVICE_NAME: mailcatcher
+        VIRTUAL_HOST: "mailcatcher.${DOCKER_DNS_DOMAIN}"
+        VIRTUAL_PORT: "1080"
