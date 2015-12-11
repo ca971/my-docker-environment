@@ -10,6 +10,8 @@ DOCKER_MACHINE_IP=$(shell docker-machine ip $(DOCKER_MACHINE_NAME))
 DOCKER_COMPOSE=/usr/local/bin/docker-compose
 DOCKER_COMPOSE_UP_ARGS:= -d
 
+DOCKER_FILES= -f docker-compose.yml -f docker-compose.consul.yml
+
 DOCKER_DNS_DOMAIN:=docker.local
 
 ENV_VARS= DOCKER_DNS_DOMAIN=$(DOCKER_DNS_DOMAIN) DOCKER_MACHINE_IP=$(DOCKER_MACHINE_IP)
@@ -57,6 +59,7 @@ start:
 rmf:
 	$(ENV_VARS) \
 		$(DOCKER_COMPOSE) \
+		$(DOCKER_FILES) \
 		rm --force
 
 compose:
@@ -66,10 +69,19 @@ compose:
 stop rm logs ps version build:
 	$(ENV_VARS) \
 		$(DOCKER_COMPOSE) \
+		$(DOCKER_FILES) \
 		$@
+
 
 rebuild: stop rmf up
 
 remove-old-images:
 	$(DOCKER) \
 		rmi `$(DOCKER) images | grep "^<none>" | awk '{print $3}'`
+
+consul:
+	$(ENV_VARS) \
+		$(DOCKER_COMPOSE) \
+		$(DOCKER_FILES) \
+		up $(DOCKER_COMPOSE_UP_ARGS) \
+		consul consul-registrator
