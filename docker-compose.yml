@@ -18,6 +18,7 @@ nginx-proxy:
         - "443:443"
     volumes:
         - /var/run/docker.sock:/tmp/docker.sock:ro
+        - ./docker/nginx-proxy/conf/proxy.conf:/etc/nginx/proxy.conf:ro
     environment:
         SERVICE_NAME: nginx-proxy
 
