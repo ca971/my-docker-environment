@@ -4,3 +4,4 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
     - Initial Commit
+    - Adds dockerui container
