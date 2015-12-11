@@ -69,3 +69,7 @@ stop rm logs ps version build:
 		$@
 
 rebuild: stop rmf up
+
+remove-old-images:
+	$(DOCKER) \
+		rmi `$(DOCKER) images | grep "^<none>" | awk '{print $3}'`
