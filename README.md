@@ -17,6 +17,10 @@ I put together this repository when I started looking at [Docker](https://www.do
 1. [Docker Environment](docs/Getting-Started/02-Docker-Environment.md)
 1. [Usage](docs/Getting-Started/03-Usage.md)
 
+## DockerUI
+
+You can view the [DockerUI](https://github.com/crosbymichael/dockerui) container at [http://dockerui.docker.local](http://dockerui.docker.local).
+
 ## License
 [MIT](LICENSE)
 
