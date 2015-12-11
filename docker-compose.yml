@@ -18,6 +18,7 @@ nginx-proxy:
         - "443:443"
     volumes:
         - /var/run/docker.sock:/tmp/docker.sock:ro
+        - ./docker/nginx-proxy/conf/proxy.conf:/etc/nginx/proxy.conf:ro
     environment:
         SERVICE_NAME: nginx-proxy
 
@@ -30,3 +31,13 @@ mailcatcher:
         SERVICE_NAME: mailcatcher
         VIRTUAL_HOST: "mailcatcher.${DOCKER_DNS_DOMAIN}"
         VIRTUAL_PORT: "1080"
+
+dockerui:
+    container_name: dockerui
+    image: dockerui/dockerui:latest
+    volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+        SERVICE_NAME: dockerui
+        VIRTUAL_HOST: "dockerui.${DOCKER_DNS_DOMAIN}"
+        VIRTUAL_PORT: 9000

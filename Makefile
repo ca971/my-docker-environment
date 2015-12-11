@@ -8,7 +8,6 @@ DOCKER_MACHINE_NAME:=default
 DOCKER_MACHINE_IP=$(shell docker-machine ip $(DOCKER_MACHINE_NAME))
 
 DOCKER_COMPOSE=/usr/local/bin/docker-compose
-DOCKER_COMPOSE_START_ARGS:= --detatch
 DOCKER_COMPOSE_UP_ARGS:= -d
 
 DOCKER_DNS_DOMAIN:=docker.local
@@ -53,7 +52,7 @@ up:
 start:
 	$(ENV_VARS)	\
 		$(DOCKER_COMPOSE) \
-		start $(DOCKER_COMPOSE_START_ARGS)
+		start
 
 rmf:
 	$(ENV_VARS) \
