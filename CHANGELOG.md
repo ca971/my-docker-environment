@@ -6,3 +6,4 @@ This project adheres to [Semantic Versioning](http://semver.org/).
     - Initial Commit
     - Adds dockerui container
     - Adds target to Makefile to remove old Docker images
+    - Adds support for managing consul containers
