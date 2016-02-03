@@ -96,7 +96,7 @@ rebuild: stop rmf up
 
 remove-old-images:
 	$(DOCKER) \
-		rmi `$(DOCKER) images | grep "^<none>" | awk '{print $3}'`
+		rmi `$(DOCKER) images | grep "^<none>" | awk '{print $$3}'`
 
 consul:
 	$(ENV_VARS) \
