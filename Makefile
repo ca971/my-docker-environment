@@ -46,6 +46,25 @@ machine:
 		$(DOCKER_MACHINE_START_ARGS) \
 		$(DOCKER_MACHINE_NAME)
 
+mstart:
+	$(DOCKER_MACHINE) \
+		start \
+		$(DOCKER_MACHINE_NAME)
+
+mstop:
+	$(DOCKER_MACHINE) \
+		stop \
+		$(DOCKER_MACHINE_NAME)
+
+mstatus:
+	$(DOCKER_MACHINE) \
+		status \
+		$(DOCKER_MACHINE_NAME)
+
+mls:
+	$(DOCKER_MACHINE) \
+		ls
+
 up:
 	$(ENV_VARS)	\
 		$(DOCKER_COMPOSE) \
