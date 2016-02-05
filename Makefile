@@ -1,18 +1,18 @@
 DOCKER=/usr/local/bin/docker
 
 DOCKER_MACHINE=/usr/local/bin/docker-machine
-DOCKER_MACHINE_CREATE_ARGS:=create
-DOCKER_MACHINE_START_ARGS:=start
+DOCKER_MACHINE_CREATE_ARGS=create
+DOCKER_MACHINE_START_ARGS=start
 
-DOCKER_MACHINE_NAME:=default
-DOCKER_MACHINE_IP=$(shell docker-machine ip $(DOCKER_MACHINE_NAME))
+DOCKER_MACHINE_NAME=default
+DOCKER_MACHINE_IP:=$(shell docker-machine ip $(DOCKER_MACHINE_NAME))
 
-DOCKER_COMPOSE=/usr/local/bin/docker-compose
+DOCKER_COMPOSE:=/usr/local/bin/docker-compose
 DOCKER_COMPOSE_UP_ARGS:= -d
 
-DOCKER_FILES= -f docker-compose.yml -f docker-compose.consul.yml
+DOCKER_FILES:= -f docker-compose.yml -f docker-compose.consul.yml
 
-DOCKER_DNS_DOMAIN:=docker.local
+DOCKER_DNS_DOMAIN ?=docker.local
 
 ENV_VARS= DOCKER_DNS_DOMAIN=$(DOCKER_DNS_DOMAIN) DOCKER_MACHINE_IP=$(DOCKER_MACHINE_IP)
 
@@ -46,6 +46,25 @@ machine:
 		$(DOCKER_MACHINE_START_ARGS) \
 		$(DOCKER_MACHINE_NAME)
 
+mstart:
+	$(DOCKER_MACHINE) \
+		start \
+		$(DOCKER_MACHINE_NAME)
+
+mstop:
+	$(DOCKER_MACHINE) \
+		stop \
+		$(DOCKER_MACHINE_NAME)
+
+mstatus:
+	$(DOCKER_MACHINE) \
+		status \
+		$(DOCKER_MACHINE_NAME)
+
+mls:
+	$(DOCKER_MACHINE) \
+		ls
+
 up:
 	$(ENV_VARS)	\
 		$(DOCKER_COMPOSE) \
@@ -77,7 +96,7 @@ rebuild: stop rmf up
 
 remove-old-images:
 	$(DOCKER) \
-		rmi `$(DOCKER) images | grep "^<none>" | awk '{print $3}'`
+		rmi `$(DOCKER) images | grep "^<none>" | awk '{print $$3}'`
 
 consul:
 	$(ENV_VARS) \
