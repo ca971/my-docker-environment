@@ -38,8 +38,8 @@ machine-virtualbox:
 
 resolver:
 	sudo mkdir -p /etc/resolver
-	echo "nameserver $(shell docker-machine ip $(DOCKER_MACHINE_NAME))" | sudo tee /etc/resolver/$(DOCKER_DNS_DOMAIN)
-	echo "nameserver $(shell docker-machine ip $(DOCKER_MACHINE_NAME))\n\nport 8600" | sudo tee /etc/resolver/local.consul
+	echo "nameserver $(DOCKER_MACHINE_IP)" | sudo tee /etc/resolver/$(DOCKER_DNS_DOMAIN)
+	echo "nameserver $(DOCKER_MACHINE_IP)\n\nport 8600" | sudo tee /etc/resolver/local.consul
 
 machine:
 	$(DOCKER_MACHINE) \
