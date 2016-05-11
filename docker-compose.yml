@@ -22,15 +22,15 @@ nginx-proxy:
     environment:
         SERVICE_NAME: nginx-proxy
 
-mailcatcher:
-    container_name: mailcatcher
-    image: schickling/mailcatcher:latest
+mailhog:
+    container_name: mailhog
+    image: mailhog/mailhog:latest
     ports:
         - "1025:1025"
     environment:
-        SERVICE_NAME: mailcatcher
-        VIRTUAL_HOST: "mailcatcher.${DOCKER_DNS_DOMAIN}"
-        VIRTUAL_PORT: "1080"
+        SERVICE_NAME: mailhog
+        VIRTUAL_HOST: "mailhog.${DOCKER_DNS_DOMAIN}"
+        VIRTUAL_PORT: "8025"
 
 dockerui:
     container_name: dockerui

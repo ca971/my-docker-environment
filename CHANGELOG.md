@@ -9,3 +9,4 @@ This project adheres to [Semantic Versioning](http://semver.org/).
     - Adds support for managing consul containers
     - Simplifies Makefile for resolver target
     - Fixes dockerui project rename to ui-for-docker
+    - Replaces mailcatcher with mailhog
