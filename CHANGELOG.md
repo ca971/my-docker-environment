@@ -8,3 +8,4 @@ This project adheres to [Semantic Versioning](http://semver.org/).
     - Adds target to Makefile to remove old Docker images
     - Adds support for managing consul containers
     - Simplifies Makefile for resolver target
+    - Fixes dockerui project rename to ui-for-docker

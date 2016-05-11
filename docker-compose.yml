@@ -34,7 +34,7 @@ mailcatcher:
 
 dockerui:
     container_name: dockerui
-    image: dockerui/dockerui:latest
+    image: uifd/ui-for-docker:latest
     volumes:
         - /var/run/docker.sock:/var/run/docker.sock
     environment:
