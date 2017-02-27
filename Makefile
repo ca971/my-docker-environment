@@ -5,7 +5,7 @@ DOCKER_MACHINE_CREATE_ARGS=create
 DOCKER_MACHINE_START_ARGS=start
 
 DOCKER_MACHINE_NAME=default
-DOCKER_MACHINE_IP:=$(shell docker-machine ip $(DOCKER_MACHINE_NAME))
+DOCKER_MACHINE_IP ?=$(shell docker-machine ip $(DOCKER_MACHINE_NAME))
 
 DOCKER_COMPOSE:=/usr/local/bin/docker-compose
 DOCKER_COMPOSE_UP_ARGS:= -d
@@ -38,7 +38,7 @@ machine-virtualbox:
 
 resolver:
 	sudo mkdir -p /etc/resolver
-	echo "nameserver $(DOCKER_MACHINE_IP)" | sudo tee /etc/resolver/$(DOCKER_DNS_DOMAIN)
+	echo "nameserver $(DOCKER_MACHINE_IP)\n\nport 8053" | sudo tee /etc/resolver/$(DOCKER_DNS_DOMAIN)
 	echo "nameserver $(DOCKER_MACHINE_IP)\n\nport 8600" | sudo tee /etc/resolver/local.consul
 
 machine:
