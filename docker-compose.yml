@@ -11,6 +11,7 @@ services:
     environment:
       SERVICE_NAME: dnsmasq
     command: "--address=/.${DOCKER_DNS_DOMAIN}/${DOCKER_MACHINE_IP}"
+
   nginx-proxy:
     container_name: nginx-proxy
     image: jwilder/nginx-proxy:latest
@@ -35,16 +36,6 @@ mailhog:
         SERVICE_NAME: mailhog
         VIRTUAL_HOST: "mailhog.${DOCKER_DNS_DOMAIN}"
         VIRTUAL_PORT: "8025"
-
-dockerui:
-    container_name: dockerui
-    image: uifd/ui-for-docker:latest
-    volumes:
-        - /var/run/docker.sock:/var/run/docker.sock
-    environment:
-        SERVICE_NAME: dockerui
-        VIRTUAL_HOST: "dockerui.${DOCKER_DNS_DOMAIN}"
-        VIRTUAL_PORT: 9000
 
 networks:
   public:

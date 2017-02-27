@@ -7,7 +7,6 @@ I put together this repository when I started looking at [Docker](https://www.do
 - [andyshinn/dnsmasq](https://github.com/andyshinn/docker-dnsmasq)
 - [jwilder/nginx-proxy](https://github.com/jwilder/nginx-proxy)
 - [mailhog/mailhog](https://github.com/mailhog/MailHog)
-- [uifd/ui-for-docker](https://github.com/kevana/ui-for-docker)
 - [progrium/consul](https://github.com/gliderlabs/docker-consul/tree/legacy)
 - [gliderlabs/registrator](https://github.com/gliderlabs/registrator)
 - [magic](http://cdn.memegenerator.net/instances/400x/30372816.jpg)
