@@ -67,7 +67,7 @@ mls:
 
 up:
 	$(ENV_VARS)	\
-		$(DOCKER_COMPOSE) \
+		$(DOCKER_COMPOSE) --project-name=docker \
 		up $(DOCKER_COMPOSE_UP_ARGS)
 
 start:
