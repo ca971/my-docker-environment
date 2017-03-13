@@ -1,23 +1,25 @@
-consul:
-    container_name: consul
-    image: progrium/consul:latest
-    ports:
-        - "8300:8300"
-        - "8301:8301/tcp"
-        - "8301:8301/udp"
-        - "8302:8302/tcp"
-        - "8302:8302/udp"
-        - "8400:8400"
-        - "8600:53/tcp"
-        - "8600:53/udp"
-    environment:
-        VIRTUAL_HOST: "consul.${DOCKER_DNS_DOMAIN}"
-        VIRTUAL_PORT: "8500"
-    command: -server -bootstrap -ui-dir /ui -dc=local
+version: '2'
+services:
+  consul:
+      container_name: consul
+      image: progrium/consul:latest
+      ports:
+          - "8300:8300"
+          - "8301:8301/tcp"
+          - "8301:8301/udp"
+          - "8302:8302/tcp"
+          - "8302:8302/udp"
+          - "8400:8400"
+          - "8600:53/tcp"
+          - "8600:53/udp"
+      environment:
+          VIRTUAL_HOST: "consul.${DOCKER_DNS_DOMAIN}"
+          VIRTUAL_PORT: "8500"
+      command: -server -bootstrap -ui-dir /ui -dc=local
 
-consul-registrator:
-    container_name: consul-registrator
-    image: gliderlabs/registrator:latest
-    volumes:
-        - /var/run/docker.sock:/tmp/docker.sock:ro
-    command: consul://consul.${DOCKER_DNS_DOMAIN}
+  consul-registrator:
+      container_name: consul-registrator
+      image: gliderlabs/registrator:latest
+      volumes:
+          - /var/run/docker.sock:/tmp/docker.sock:ro
+      command: consul://consul.${DOCKER_DNS_DOMAIN}
